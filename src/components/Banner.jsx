@@ -20,13 +20,13 @@ const Banner = () => {
         modules={[Autoplay, Navigation]}
         className="mySwiper">
         <SwiperSlide>
-          <img className='w-full h-180' src={one} alt="one" />
+          <img className='w-full h-150' src={one} alt="one" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className='w-full h-180' src={two} alt="two" />
+          <img className='w-full h-150' src={two} alt="two" />
         </SwiperSlide>
         <SwiperSlide>
-          <img className='w-full h-180' src={three} alt="three" />
+          <img className='w-full h-150' src={three} alt="three" />
         </SwiperSlide>
       </Swiper>
     </div>

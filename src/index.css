@@ -9,3 +9,8 @@
   --color-primary: var(--primary-color);
   --color-secondary: var(--secondary-color);
 }
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #33FF33 !important;
+}
