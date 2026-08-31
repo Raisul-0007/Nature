@@ -5,17 +5,17 @@ export const ApiContext = createContext()
 const ApiData = ({children}) => {
     const [data, setData] = useState([])
     const [loading, setLoading] = useState(true)
-    const fetch = async()=>{
+    const Apifetch = async()=>{
         try{
             setLoading(true)
             const response = await axios.get("https://dummyjson.com/products?&limit=0")
             setData(response.data.products)
-        }catch{
+        }finally{
             setLoading(false)
         }
     }
     useEffect(()=>{
-        fetch()
+        Apifetch()
     },[])
   return (
     <ApiContext.Provider value={{data, loading}}>
