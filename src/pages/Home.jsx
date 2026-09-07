@@ -4,6 +4,7 @@ import Banner from './../components/Banner';
 import New from '../components/New';
 import Footer from '../components/Footer';
 import CallToAction from '../components/CallToAction';
+import Offer from '../components/Offer';
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Banner/>
       <New/>
       <CallToAction/>
+      <Offer/>
       <Footer/>
     </div>
   )

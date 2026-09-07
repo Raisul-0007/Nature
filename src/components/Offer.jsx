@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
-import { ApiContext } from './ApiData';
 import Container from './Container'
+import { ApiContext } from './ApiData'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
-const New = () => {
+
+const Offer = () => {
     let {data} = useContext(ApiContext)
   return (
     <div>
@@ -30,13 +31,12 @@ const New = () => {
             <img src={item.thumbnail} alt="" />
           </div>
           <div className=" rounded-b-4xl">
-            <div className="flex justify-between bg-primary items-end px-5 pt-6 pb-1">
-              <h3 className='text-3xl capitalize'>{item.title.slice(0,10)}...</h3>
-            <p className='text-xl text-blue-800'>${(item.price-((item.price * item.discountPercentage) / 100)).toFixed(2)}</p>
+            <div className="flex justify-between bg-primary px-5 pt-6 pb-1">
+              <h3 className='text-3xl capitalize'>{item.title.slice(0,5)}...</h3>
+              <div className="bg-primary ">
+                <p className='text-xl text-blue-800'>${(item.price-((item.price * item.discountPercentage) / 100)).toFixed(2)}</p>
+                <p className='line-through'>{item.price}</p>
             </div>
-            <div className="bg-primary flex justify-between items-center px-6 pb-4">
-              <h3 className='capitalize text-xl text-secondary font-bold'>{item.category}</h3>
-              <p className='line-through'>{item.price}</p>
             </div>
             <div className="rounded-b-4xl text-center py-4 cursor-pointer hover:bg-[rgba(0,253,0,0.46)] hover:text-secondary bg-white border border-primary">
               Add To cart
@@ -51,4 +51,4 @@ const New = () => {
   )
 }
 
-export default New
+export default Offer
