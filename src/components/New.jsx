@@ -25,8 +25,8 @@ const New = () => {
       >
         <div className="flex flex-wrap gap-5">
       {data.map((item)=>(
-        <SwiperSlide className="w-1/4">
-          <div className="bg-[rgba(0,253,0,0.11)] py-8 rounded-t-4xl">
+        <SwiperSlide className="hover:scale-95 transition duration-500 ease-in-out">
+          <div className="bg-[rgba(0,253,0,0.11)] py-8 rounded-t-4xl ">
             <img src={item.thumbnail} alt="" />
           </div>
           <div className=" rounded-b-4xl">
