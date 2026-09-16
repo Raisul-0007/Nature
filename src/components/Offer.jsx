@@ -26,7 +26,7 @@ const Offer = () => {
       >
         <div className="flex flex-wrap gap-5">
       {data.map((item)=>(
-        <SwiperSlide className=" shadow-2xl border border-[#d4d2d2] rounded-4xl hover:scale-95 transition duration-500 ease-in-out">
+        <SwiperSlide className="group shadow-2xl border border-[#d4d2d2] rounded-4xl hover:scale-95 transition duration-500 ease-in-out">
           <div className="bg-white border-b border-[#d4d2d2] rounded-t-4xl">
             <img className='w-full' src={item.thumbnail} alt="" />
           </div>
@@ -38,7 +38,7 @@ const Offer = () => {
                 <p className='line-through'>{item.price}</p>
             </div>
             </div>
-            <div className="rounded-b-4xl text-center py-4 cursor-pointer hover:bg-[rgba(0,253,0,0.46)] hover:text-secondary bg-white border border-primary">
+            <div className="rounded-b-4xl text-center py-4 cursor-pointer group-hover:bg-[rgba(0,253,0,0.46)] hover:text-secondary bg-white border border-primary">
               Add To cart
             </div>
             </div> 
