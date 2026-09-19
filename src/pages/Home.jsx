@@ -9,12 +9,10 @@ import Offer from '../components/Offer';
 const Home = () => {
   return (
     <div>
-      <Navber/>
       <Banner/>
       <New/>
       <CallToAction/>
       <Offer/>
-      <Footer/>
     </div>
   )
 }
