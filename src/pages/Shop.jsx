@@ -16,9 +16,13 @@ const Shop = () => {
   }
   return (
     <div>
-      <Container className="flex gap-5">
+      <Container className="">
+        <div className="py-20">
+          <h2 className='text-5xl font-bold'>Shop</h2>
+        </div>
+        <div className="flex gap-5">
         <div className="w-1/4">
-        <div className="bg-white rounded-2xl p-5 h-[calc(100vh-120px)] overflow-y-auto sticky top-24">
+        <div className="bg-white rounded-2xl p-5 h-[calc(100vh-120px)] overflow-y-auto sticky top-24 shadow-2xl">
           <h3 className='text-xl font-semibold mb-5'>Filter by category</h3>
           <div className="space-y-2">
             <ul>
@@ -32,6 +36,7 @@ const Shop = () => {
         </div>
         <div className="w-3/4">
         <Filter/>
+        </div>
         </div>
       </Container>
     </div>
