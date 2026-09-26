@@ -8,8 +8,11 @@ const Shop = () => {
   let [filter, setFilter] = useState([])
   useEffect(()=>{
     setCategory([...new Set(data.map((item)=> item.category))])
+    setFilter(data)
   },[data])
-
+  let handleAll = ()=>{
+    setFilter(data)
+  }
   let handleCategory = (cItem)=>{
     let filterItem = data.filter(((item)=>item.category === cItem))
     setFilter(filterItem)
@@ -26,7 +29,7 @@ const Shop = () => {
           <h3 className='text-xl font-semibold mb-5'>Filter by category</h3>
           <div className="space-y-2">
             <ul>
-              <li></li>
+              <li className='cursor-pointer p-3 rounded-lg hover:bg-gray-100 transition' onClick={handleAll}>All</li>
             {category.map((item)=>(
               <li className='cursor-pointer p-3 rounded-lg hover:bg-gray-100 transition' key={item} onClick={()=>handleCategory(item)}>{item}</li>
             ))}
@@ -35,7 +38,7 @@ const Shop = () => {
         </div>
         </div>
         <div className="w-3/4">
-        <Filter/>
+        <Filter filter={filter}/>
         </div>
         </div>
       </Container>
