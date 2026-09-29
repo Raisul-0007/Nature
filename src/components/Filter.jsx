@@ -1,10 +1,10 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const Filter = ({ filter }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {filter.map((item) => (
-        <div
+        <Link to="/shop/id"
           key={item.id}
           className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
         >
@@ -41,7 +41,7 @@ const Filter = ({ filter }) => {
               </button>
             </div>
           </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
