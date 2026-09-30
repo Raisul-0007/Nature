@@ -4,11 +4,10 @@ const Filter = ({ filter }) => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {filter.map((item) => (
-        <Link to="/shop/id"
-          key={item.id}
+        <div
           className="group cursor-pointer bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
         >
-          <div className="relative h-64 bg-gray-50 overflow-hidden">
+          <Link to={`/shop/${item.id}`} className="relative h-64 bg-gray-50 overflow-hidden">
             <img
               src={item.thumbnail}
               alt={item.id}
@@ -18,7 +17,7 @@ const Filter = ({ filter }) => {
             <span className="absolute top-4 left-4 bg-primary text-white text-xs font-medium px-3 py-1.5 rounded-full">
               {item.brand}
             </span>
-          </div>
+          </Link>
 
           <div className="p-5">
             <p className="text-sm text-gray-400 mb-1">
@@ -41,7 +40,7 @@ const Filter = ({ filter }) => {
               </button>
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
