@@ -12,11 +12,11 @@ const SingleProduct = () => {
   },[productId.id])
   return (
     <div>
-      <Container>
-        <div className="">
+      <Container clasName="flex ">
+        <div className="w-1/3">
           <img src={product.thumbnail} alt={product.id} />
         </div>
-        <div className="">
+        <div className="w-2/3">
           <h3>{product.title}</h3>
         </div>
       </Container>
