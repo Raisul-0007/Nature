@@ -3,8 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import Container from "./../components/Container";
 import { FaStar, FaShoppingCart, FaArrowLeft } from "react-icons/fa";
+import { useDispatch } from "react-redux";
 
 const SingleProduct = () => {
+  let dispatch = useDispatch()
   const { id } = useParams();
 
   const [product, setProduct] = useState(null);
@@ -22,6 +24,9 @@ const SingleProduct = () => {
         <p className="text-xl text-gray-500">Loading product...</p>
       </div>
     );
+  }
+  let handleCart= (item)=>{
+    dispatch(productCart({...item, qun:1}))
   }
 
   return (
@@ -95,7 +100,7 @@ const SingleProduct = () => {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <button className="flex-1 flex items-center justify-center gap-3 bg-primary text-white py-4 rounded-xl font-semibold hover:bg-black transition duration-300 cursor-pointer">
+                <button onClick={()=> handleCart(product)} className="flex-1 flex items-center justify-center gap-3 bg-primary text-white py-4 rounded-xl font-semibold hover:bg-black transition duration-300 cursor-pointer">
                   <FaShoppingCart />
                   Add to Cart
                 </button>
