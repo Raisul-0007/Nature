@@ -2,11 +2,14 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
-import ApiProvider from "./components/ApiData.jsx"
+import ApiData from "./components/ApiData.jsx"
+import { Provider } from 'react-redux'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <ApiProvider>
+    <Provider store={store}>
+    <ApiData>
       <App/>
-    </ApiProvider>
+    </ApiData>
+    </Provider>
   </StrictMode>,
 )
