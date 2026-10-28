@@ -17,7 +17,7 @@ export const counterSlice = createSlice({
       }
     },
     decrement: state => {
-      state.value -= 1
+      state.cartItem[index].qun--
     },
     incrementByAmount: (state, action: PayloadAction<number>) => {
       state.value += action.payload
