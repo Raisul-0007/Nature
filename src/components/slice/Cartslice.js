@@ -16,9 +16,15 @@ export const counterSlice = createSlice({
         state.cartItem = [...state.cartItem, action.payload]
       }
     },
-    removeCart: (state, action)={
+    removeCart: (state, action)=>{
       let filterCart = state.cartItem.filter((item)=> item.id !=action.payload.id)
       state.cartItem = filterCart
+    },
+    increment: (state, action)=>{
+      let index = state.cartItem.findIndex((item)=> item.id === action.payload.id)
+      if(index !== -1){
+        state.cartItem[index].qun++
+      }
     },
     decrement: state => {
       state.cartItem[index].qun--
