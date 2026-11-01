@@ -1,8 +1,7 @@
 import React from 'react'
 import Container from "./Container"
-import Home  from '../pages/Home'
-import Shop from "../pages/Shop"
 import { Link } from 'react-router-dom'
+import { FaShoppingCart } from "react-icons/fa";
 
 const Navber = () => {
   return (
@@ -21,8 +20,9 @@ const Navber = () => {
                 </li>
             </ul>
         </div>
-        <div className="w-1/5">
+        <div className="w-1/5 flex items-center gap-5">
         <button className='bg-primary px-8 py-3 rounded-3xl cursor-pointer'>Contact Us</button>
+        <Link to="/cart"><FaShoppingCart/></Link>
         </div>
       </Container>
     </div>
