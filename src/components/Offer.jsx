@@ -5,9 +5,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
+import { addToCart } from './slice/Cartslice';
+import { useDispatch } from 'react-redux';
 
 const Offer = () => {
     let {data} = useContext(ApiContext)
+    const dispatch = useDispatch()
+      const handleCart = ()=>{
+        dispatch(addToCart({ ...item, qun:1}))
+      }
+
   return (
     <div>
       <Container clasName="py-10">
