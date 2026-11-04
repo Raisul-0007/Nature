@@ -22,7 +22,10 @@ const Navber = () => {
         </div>
         <div className="w-1/5 flex items-center gap-5">
         <button className='bg-primary px-8 py-3 rounded-3xl cursor-pointer'>Contact Us</button>
-        <Link to="/cart"><FaShoppingCart/></Link>
+        <Link className='cursor-pointer flex gap-1 items-center lg:text-[16px] text-[12px]' to='/cart'>
+                <FaCartShopping/>
+                {addToCart.length}
+                </Link >
         </div>
       </Container>
     </div>
