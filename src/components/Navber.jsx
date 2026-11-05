@@ -2,8 +2,10 @@ import React from 'react'
 import Container from "./Container"
 import { Link } from 'react-router-dom'
 import { FaShoppingCart } from "react-icons/fa";
+import { FaCartShopping } from 'react-icons/fa6';
+import { useSelector } from 'react-redux';
 const Navber = () => {
-  
+  let addToCart = useSelector((state)=>state.cart.cartItem)
   return (
     <div className='bg-white border-b border-primary shadow-[0_8px_20px_rgba(0,0,0,0.15)]'>
       <Container clasName="flex items-center py-5">

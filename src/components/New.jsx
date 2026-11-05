@@ -7,11 +7,12 @@ import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { addToCart } from './slice/Cartslice';
 import { useDispatch } from 'react-redux';
+import {Link} from "react-router-dom"
 const New = () => {
     let {data} = useContext(ApiContext)
     const dispatch = useDispatch()
   const handleCart = (item)=>{
-    dispatch(addToCart({ ...item, qun:1}))
+    dispatch(addToCart({ ...item, qun:1 }))
   }
   return (
     <div>
@@ -32,6 +33,7 @@ const New = () => {
         <div className="flex flex-wrap gap-5">
       {data.map((item)=>(
         <SwiperSlide className="hover:scale-95 transition duration-500 ease-in-out">
+          <Link to={`/shop/${item.id}`}>
           <div className="bg-[rgba(0,253,0,0.11)] py-8 rounded-t-4xl ">
             <img src={item.thumbnail} alt="" />
           </div>
@@ -44,10 +46,11 @@ const New = () => {
               <h3 className='capitalize text-xl text-secondary font-bold'>{item.category}</h3>
               <p className='line-through'>{item.price}</p>
             </div>
-            <button onClick={handleCart(item)} className="w-full rounded-b-4xl text-center py-4  cursor-pointer hover:bg-[rgba(0,253,0,0.46)] hover:text-secondary bg-white border border-primary">
+            <button onClick={()=>handleCart(item)} className="w-full rounded-b-4xl text-center py-4  cursor-pointer hover:bg-[rgba(0,253,0,0.46)] hover:text-secondary bg-white border border-primary">
               Add To cart
             </button>
             </div> 
+            </Link>
         </SwiperSlide>
       ))}
       </div>
