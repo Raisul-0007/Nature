@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import Container from "./../components/Container";
 import { FaStar, FaShoppingCart, FaArrowLeft } from "react-icons/fa";
 import { useDispatch } from "react-redux";
+import { addToCart } from "../components/slice/Cartslice";
 
 const SingleProduct = () => {
   let dispatch = useDispatch()
@@ -25,8 +26,8 @@ const SingleProduct = () => {
       </div>
     );
   }
-  let handleCart= (item)=>{
-    dispatch(productCart({...item, qun:1}))
+  let handleCart= ()=>{
+    dispatch(addToCart({...product, qun:1}))
   }
 
   return (
@@ -100,7 +101,7 @@ const SingleProduct = () => {
                 </div>
               </div>
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <button onClick={()=> handleCart(product)} className="flex-1 flex items-center justify-center gap-3 bg-primary text-white py-4 rounded-xl font-semibold hover:bg-black transition duration-300 cursor-pointer">
+                <button onClick={handleCart} className="flex-1 flex items-center justify-center gap-3 bg-primary text-white py-4 rounded-xl font-semibold hover:bg-black transition duration-300 cursor-pointer">
                   <FaShoppingCart />
                   Add to Cart
                 </button>
