@@ -1,43 +1,58 @@
+
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   addToCart,
-  removeFromCart,
-  clearCart,
-} from "./slice/Cartslice";
+  removeCart,
+  increment,
+  decrement
+} from "../components/slice/Cartslice";
 
 const Cart = () => {
-  // const dispatch = useDispatch();
+  let dispatch = useDispatch();
+  let cartdata = useSelector((state) => state.cart.cartItem);
 
-  // const cartItem = useSelector(
-  //   (state) => state.cart.cartItem
-  // );
+  let subtotal = cartdata.reduce((total, item) => {
+    return total + item.price * item.qun;
+  }, 0);
 
-  // const subtotal = cartItem.reduce(
-  //   (total, item) => total + item.price * item.qun,
-  //   0
-  // );
-
-  // const shipping = cartItem.length > 0 ? 10 : 0;
-  // const total = subtotal + shipping;
+  let shipping = cartdata.length > 0 ? 10 : 0;
+  let total = subtotal + shipping;
 
   return (
-    <section className="bg-gray-100 min-h-screen py-12">
+    <section className="bg-gray-50 min-h-screen py-12">
       <div className="max-w-7xl mx-auto px-4">
 
-        <h2 className="text-3xl font-bold mb-8">
-          Shopping Cart
-        </h2>
+        <div className="mb-10">
+          <p className="text-green-600 font-semibold mb-2">
+            MY SHOPPING
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            Shopping Cart
+          </h2>
+          <p className="text-gray-500 mt-2">
+            Manage your products and checkout easily.
+          </p>
+        </div>
 
-        {cartItem.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-xl">
-            <h2 className="text-2xl font-semibold">
+        {cartdata.length === 0 ? (
+          <div className="bg-white rounded-2xl shadow-sm text-center py-24">
+            <div className="text-6xl text-green-600 mb-5">
+              🛒
+            </div>
+
+            <h2 className="text-2xl font-bold text-gray-900">
               Your Cart is Empty
             </h2>
+
+            <p className="text-gray-500 mt-3">
+              You haven't added any products yet.
+            </p>
+
             <Link
               to="/shop"
-              className="inline-block mt-5 bg-black text-white px-6 py-3 rounded-lg"
+              className="inline-block mt-6 bg-green-600 hover:bg-green-700 text-white px-7 py-3 rounded-xl font-semibold transition"
             >
               Continue Shopping
             </Link>
@@ -45,107 +60,133 @@ const Cart = () => {
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            {/* Cart Products */}
-            <div className="lg:col-span-2 bg-white rounded-xl p-6">
+            <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm p-5 md:p-7">
 
-              <div className="flex justify-between mb-6">
-                <h3 className="text-xl font-semibold">
-                  Cart Items ({cartItem.length})
-                </h3>
+              <div className="flex justify-between items-center border-b pb-5 mb-5">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    Cart Items
+                  </h3>
+                  <p className="text-gray-500 text-sm mt-1">
+                    {cartdata.length} Products
+                  </p>
+                </div>
 
                 <button
-                  onClick={() => dispatch(clearCart())}
-                  className="text-red-500"
+                  onClick={() => dispatch(removeCart())}
+                  className="text-red-500 hover:text-red-700 font-semibold"
                 >
                   Clear Cart
                 </button>
               </div>
 
-              {cartItem.map((item) => (
+              {cartdata.map((item) => (
                 <div
                   key={item.id}
-                  className="flex flex-wrap md:flex-nowrap items-center gap-5 border-b py-6"
+                  className="flex flex-wrap md:flex-nowrap items-center gap-5 border-b border-gray-100 py-6"
                 >
-                  <img
-                    src={item.thumbnail}
-                    alt={item.title}
-                    className="w-24 h-24 object-contain bg-gray-100 rounded-lg"
-                  />
+                  <div className="w-28 h-28 bg-gray-50 rounded-xl flex items-center justify-center shrink-0">
+                    <img
+                      src={item.thumbnail}
+                      alt={item.title}
+                      className="w-full h-full object-contain p-2"
+                    />
+                  </div>
 
                   <div className="flex-1">
-                    <h4 className="font-semibold text-lg">
+                    <h4 className="text-lg font-bold text-gray-900">
                       {item.title}
                     </h4>
 
-                    <p className="text-gray-500 mt-2">
+                    <p className="text-green-600 font-bold mt-2">
                       ${item.price}
                     </p>
 
-                    <div className="flex items-center gap-4 mt-3">
+                    <div className="flex items-center gap-4 mt-4">
                       <button
-                        onClick={() =>
-                          dispatch(
-                            removeFromCart(item.id)
-                          )
-                        }
-                        className="border px-3 py-1 rounded"
+                        onClick={() => dispatch(decrement(item))}
+                        className="w-9 h-9 border border-gray-200 rounded-lg hover:bg-green-600 hover:text-white transition font-bold"
                       >
                         -
                       </button>
 
-                      <span>{item.qun}</span>
+                      <span className="font-semibold text-gray-900">
+                        {item.qun}
+                      </span>
 
                       <button
-                        onClick={() =>
-                          dispatch(addToCart(item))
-                        }
-                        className="border px-3 py-1 rounded"
+                        onClick={() => dispatch(increment(item))}
+                        className="w-9 h-9 border border-gray-200 rounded-lg hover:bg-green-600 hover:text-white transition font-bold"
                       >
                         +
                       </button>
                     </div>
                   </div>
 
-                  <div className="font-bold">
-                    ${(item.price * item.qun).toFixed(2)}
+                  <div className="flex flex-col items-end gap-4">
+                    <h4 className="text-lg font-bold text-gray-900">
+                      ${(item.price * item.qun).toFixed(2)}
+                    </h4>
+
+                    <button
+                      onClick={() => dispatch(removeCart(item))}
+                      className="text-red-500 hover:text-red-700 text-sm font-medium"
+                    >
+                      Remove
+                    </button>
                   </div>
                 </div>
               ))}
-            </div>
-
-            {/* Order Summary */}
-            <div className="bg-white rounded-xl p-6 h-fit">
-              <h3 className="text-xl font-semibold mb-6">
-                Order Summary
-              </h3>
-
-              <div className="flex justify-between mb-4">
-                <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
-              </div>
-
-              <div className="flex justify-between mb-4">
-                <span>Shipping</span>
-                <span>${shipping.toFixed(2)}</span>
-              </div>
-
-              <hr className="my-5" />
-
-              <div className="flex justify-between text-xl font-bold">
-                <span>Total</span>
-                <span>${total.toFixed(2)}</span>
-              </div>
-
-              <button className="w-full bg-black text-white py-3 rounded-lg mt-7 hover:bg-gray-800">
-                Proceed to Checkout
-              </button>
 
               <Link
                 to="/shop"
-                className="block text-center mt-5 text-gray-500"
+                className="inline-block mt-6 text-green-600 hover:text-green-700 font-semibold"
               >
-                Continue Shopping
+                ← Continue Shopping
               </Link>
+            </div>
+
+            <div className="bg-white rounded-2xl shadow-sm p-6 h-fit">
+
+              <h3 className="text-xl font-bold text-gray-900 mb-6">
+                Order Summary
+              </h3>
+
+              <div className="flex justify-between mb-5 text-gray-600">
+                <span>Subtotal</span>
+                <span className="font-semibold text-gray-900">
+                  ${subtotal.toFixed(2)}
+                </span>
+              </div>
+
+              <div className="flex justify-between mb-5 text-gray-600">
+                <span>Shipping</span>
+                <span className="font-semibold text-gray-900">
+                  ${shipping.toFixed(2)}
+                </span>
+              </div>
+
+              <div className="border-t border-dashed my-5"></div>
+
+              <div className="flex justify-between items-center">
+                <span className="text-lg font-bold text-gray-900">
+                  Total
+                </span>
+
+                <span className="text-2xl font-bold text-green-600">
+                  ${total.toFixed(2)}
+                </span>
+              </div>
+
+              <button
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-xl mt-7 transition duration-300"
+              >
+                Proceed to Checkout
+              </button>
+
+              <p className="text-center text-gray-400 text-sm mt-5">
+                Secure and Easy Shopping
+              </p>
             </div>
 
           </div>
