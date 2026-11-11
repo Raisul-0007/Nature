@@ -10,10 +10,6 @@ import { useDispatch } from 'react-redux';
 import {Link} from "react-router-dom"
 const New = () => {
     let {data} = useContext(ApiContext)
-    const dispatch = useDispatch()
-  const handleCart = (item)=>{
-    dispatch(addToCart({ ...item, qun:1 }))
-  }
   return (
     <div>
       <Container clasName="py-10">
@@ -46,9 +42,6 @@ const New = () => {
               <h3 className='capitalize text-xl text-secondary font-bold'>{item.category}</h3>
               <p className='line-through'>{item.price}</p>
             </div>
-            <button onClick={()=>handleCart(item)} className="w-full rounded-b-4xl text-center py-4  cursor-pointer hover:bg-[rgba(0,253,0,0.46)] hover:text-secondary bg-white border border-primary">
-              Add To cart
-            </button>
             </div> 
             </Link>
         </SwiperSlide>
