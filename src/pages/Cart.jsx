@@ -178,11 +178,11 @@ const Cart = () => {
                 </span>
               </div>
 
-              <button
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-xl mt-7 transition duration-300"
+              <Link to={`/checkout`}
+                className="block text-center bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-xl mt-7 transition duration-300"
               >
                 Proceed to Checkout
-              </button>
+              </Link>
 
               <p className="text-center text-gray-400 text-sm mt-5">
                 Secure and Easy Shopping

@@ -32,10 +32,13 @@ export const cartSlice = createSlice({
       state.cartItem[index].qun--
       }
     },
+    clearCart: (state) => {
+    state.cartItem = []
+  }
   }
 })
 
-export const { addToCart, removeCart, increment, decrement } = cartSlice.actions
+export const { addToCart, removeCart, increment, decrement, clearCart } = cartSlice.actions
 
 
 export default cartSlice.reducer
